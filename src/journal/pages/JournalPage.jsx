@@ -101,14 +101,14 @@ export const JournalPage = () => {
         <Grid item xs={12}>
           <Typography color="black" variant='h5'>Conductores Pendientes de Aprobar</Typography>
         </Grid>
-        <Grid item xs={12} sx={{ width: '100%', marginTop: 2 }}>
-          <List sx={{ width: '100%' }}>
+        <Grid item xs={12} lg={12} sx={{ width: '100%', marginTop: 2 }}>
+          <List sx={{ width: '100%' }} md={{ width: '100%' }} >
           {drivers.map((driverUser) => {
             return (
               <>
                 <ListItem alignItems="flex-start" key={driverUser.driver.uid}>
                   
-                  <Accordion >
+                  <Accordion sx={{ width: '100%' }} >
                       <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel3-content"
@@ -137,7 +137,18 @@ export const JournalPage = () => {
                         <Typography variant='h7'>Direccion: {driverUser.driver.address}</Typography><br></br>
                         <Typography variant='h7'>Placa: {driverUser.driver.plate}</Typography><br></br>
                         <Typography variant='h7'># Municipal: {driverUser.driver.locallicense}</Typography><br></br>
-                        <ImageList sx={{ width: 500, height: 350 }}>
+                        <ImageList cols={3} sx={{ width: '100%', height: 'auto' }}>
+                          <ImageListItem key={driverUser.driver.uid}>
+                              <img
+                                src={driverUser.driver.imageProfile}
+                                loading="lazy"
+                              />
+                              <ImageListItemBar
+                                title="Perfil"
+                                subtitle="Conductor"
+                                position="below"
+                              />
+                          </ImageListItem>
                           <ImageListItem key={driverUser.driver.uid}>
                             <img
                               src={driverUser.driver.imageDPI1}
