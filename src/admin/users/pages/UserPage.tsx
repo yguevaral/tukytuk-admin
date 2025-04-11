@@ -1,6 +1,5 @@
 import { MailLock } from '@mui/icons-material'
 import { Button, Typography } from '@mui/material'
-import React from 'react'
 
 export const UserPage = () => {
   return (
