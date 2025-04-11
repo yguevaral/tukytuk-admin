@@ -1,5 +1,7 @@
 import { AppBar, Grid, IconButton, Toolbar, Typography } from '@mui/material';
 import { LogoutOutlined, MenuOutlined } from '@mui/icons-material';
+import Box from '@mui/material/Box';
+
 
 
 export const NavBar = ({ drawerWidth = 240 }) => {
@@ -24,7 +26,18 @@ export const NavBar = ({ drawerWidth = 240 }) => {
                 <Typography variant='h6' noWrap component='div'> Conductores </Typography>
 
                 <IconButton color='error'>
-                    <LogoutOutlined />
+                
+                    <Box onClick={() => {
+                        console.log('asdf')
+                        localStorage.setItem('auth', false);
+
+                            window.location.href = "/auth/login";
+                        }}
+                    >
+                        <LogoutOutlined />
+
+                    </Box>
+                    
                 </IconButton>
             </Grid>
 

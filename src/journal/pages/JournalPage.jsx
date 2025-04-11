@@ -36,6 +36,12 @@ const style = {
 
 export const JournalPage = () => {
 
+  let auth = localStorage.getItem('auth') || false;
+
+  if( auth === 'false' || auth === false ) {
+    window.location.href = "/auth/login";
+  }
+
   const [drivers, setDrivers] = useState([]);
 
   const [motivoRechazo, setMotivoRechazo] = useState('');
@@ -81,6 +87,7 @@ export const JournalPage = () => {
     getDrivers();
   }, []);
 
+  
   return (
     <JournalLayout>
 

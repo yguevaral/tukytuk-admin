@@ -1,20 +1,39 @@
-import { Link as RouterLink } from 'react-router-dom';
-import { Button, Grid, Link, TextField, Typography } from '@mui/material';
-import { Google } from '@mui/icons-material';
+import { Button, Grid, TextField } from '@mui/material';
 import { AuthLayout } from '../layout/AuthLayout';
+import { useState } from 'react';
 
 
 export const LoginPage = () => {
+
+  const [usuario, setUsuario] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    
+    if( usuario === 'admin' && password === 'admin' ) {
+   
+      localStorage.setItem('auth', true);
+      window.location.href = "/";
+    }
+    else{
+      alert('Usuario o contraseña incorrectos');
+    }
+  }
+
+
   return (
     <AuthLayout title="Login">
       <form>
           <Grid container>
             <Grid item xs={ 12 } sx={{ mt: 2 }}>
               <TextField 
-                label="Correo" 
-                type="email" 
+                label="Usuario" 
+                type="text" 
                 placeholder='correo@google.com' 
                 fullWidth
+                value={ usuario }
+                onChange={ (e) => setUsuario(e.target.value) }
               />
             </Grid>
 
@@ -24,31 +43,19 @@ export const LoginPage = () => {
                 type="password" 
                 placeholder='Contraseña' 
                 fullWidth
+                value={ password }
+                onChange={ (e) => setPassword(e.target.value) }
               />
             </Grid>
             
             <Grid container spacing={ 2 } sx={{ mb: 2, mt: 1 }}>
-              <Grid item xs={ 12 } sm={ 6 }>
-              <Link component={ RouterLink } color='inherit' to="/">
-              <Button variant='contained' fullWidth>
+              <Grid item xs={ 12 } sm={ 12 }>
+                <Button variant='contained' fullWidth onClick={handleSubmit}>
                   Login
                 </Button>
-              </Link>
                 
               </Grid>
-              <Grid item xs={ 12 } sm={ 6 }>
-                <Button variant='contained' fullWidth>
-                  <Google />
-                  <Typography sx={{ ml: 1 }}>Google</Typography>
-                </Button>
-              </Grid>
-            </Grid>
-
-
-            <Grid container direction='row' justifyContent='end'>
-              <Link component={ RouterLink } color='inherit' to="/auth/register">
-                Crear una cuenta
-              </Link>
+              
             </Grid>
 
           </Grid>
